@@ -2636,14 +2636,14 @@ if story==1:
                             crit=rnd.randint(1, 10)
                             if crit==10:
                                 HPgoblinking=HPgoblinking-4*intel
-                                print("The goblin king forgot about you for a second and forgot to block your fireball, it delt twice the damage!")
+                                print("The goblin king forgot about you for a second and forgot to block your watershot, it delt twice the damage!")
                             else:
                                 HPgoblinking=HPgoblinking-2*intel
                         elif 19<l<30:
                             crit=rnd.randint(1, 10)
                             if crit>=7:
                                 HPgoblinking=HPgoblinking-4*intel
-                                print("The goblin king forgot about you for a second and forgot to block your fireball, it delt twice the damage!")
+                                print("The goblin king forgot about you for a second and forgot to block your watershot, it delt twice the damage!")
                             else:
                                 HPgoblinking=HPgoblinking-2*intel
                         if HPgoblinking<=0:
