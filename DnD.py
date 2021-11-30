@@ -6,35 +6,34 @@ classes=rnd.randint(1,1)
 story=1
 XP=0
 maxXP=10
-
+ex=1
 def save():
     with open('RPGsave.txt', 'w') as fil:
         fil.write(str(lvl)+'\t'+str(XP)+'\t'+str(maxXP)+'\t'+str(HPh)+'\t'+str(maxHP)+'\t'+str(MPh)+'\t'+str(maxMP)+'\t'+str(s)+'\t'+str(intel)+'\t'+str(a)+'\t'+str(st)+'\t'+str(l)+'\t'+str(usp))
 
-def load(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp):
+def load(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp, ex):
     try:
         with open('RPGsave.txt') as fil:
-            ans=str(input("Do you want to continue where you stopped (Yes or No): "))
-            if ans!='Yes' or ans!='yes' or ans!='No' or ans!='no':
-                print("Learn how to write!")
+            while ex==1:
                 ans=str(input("Do you want to continue where you stopped (Yes or No): "))
-            if ans=='Yes' or ans=='yes':
-                for linje in fil:
-                    lvl=(int(linje.split()[0]))
-                    XP=(int(linje.split()[1]))
-                    maxXP=(int(linje.split()[2]))
-                    HPh=(int(linje.split()[3]))
-                    maxHP=(int(linje.split()[4]))
-                    MPh=(int(linje.split()[5]))
-                    maxMP=(int(linje.split()[6]))
-                    s=(int(linje.split()[7]))
-                    intel=(int(linje.split()[8]))
-                    a=(int(linje.split()[9]))
-                    st=(int(linje.split()[10]))
-                    l=(int(linje.split()[11]))
-                    usp=(int(linje.split()[12]))
-            if ans=='No' or ans=='no':
-                pass
+                if ans=='Yes' or ans=='yes':
+                    for linje in fil:
+                        lvl=(int(linje.split()[0]))
+                        XP=(int(linje.split()[1]))
+                        maxXP=(int(linje.split()[2]))
+                        HPh=(int(linje.split()[3]))
+                        maxHP=(int(linje.split()[4]))
+                        MPh=(int(linje.split()[5]))
+                        maxMP=(int(linje.split()[6]))
+                        s=(int(linje.split()[7]))
+                        intel=(int(linje.split()[8]))
+                        a=(int(linje.split()[9]))
+                        st=(int(linje.split()[10]))
+                        l=(int(linje.split()[11]))
+                        usp=(int(linje.split()[12]))
+                        ex=0
+                if ans=='No' or ans=='no':
+                    ex=0
     except IOError:
         pass
     return(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp)
@@ -58,34 +57,37 @@ def f(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp):
     print(f"Unassigned Stat Points: {usp}")
 
 def h(s, usp, intel, a, st, l):
-    sp=str(input("Will you assign your points? Yes or No: "))
-    if sp=='Yes':
-        print("Assign your points")
-        pa=str(input("Assign your stat points to a category (Strength, Intellect, Agility, Stamina or Luck): "))
-        amount=int(input("How many points do you want to add?: "))
-        while amount<0 or amount>usp:
-            print("Impossible")
+    if usp>0:
+        sp=str(input("Will you assign your points? Yes or No: "))
+        while sp=='Yes' and usp>0:
+            print("Assign your points")
+            pa=str(input("Assign your stat points to a category (Strength, Intellect, Agility, Stamina or Luck): "))
             amount=int(input("How many points do you want to add?: "))
-        if pa=='Strength':
-            s+=amount
-            usp-=amount
-        elif pa=='Intellect':
-            intel+=amount
-            usp-=amount
-        elif pa=='Agility':
-            a+=amount
-            usp-=amount
-        elif pa=='Stamina':
-            st+=amount
-            usp-=amount
-        elif pa=='Luck':
-            l+=amount
-            usp-=amount
-        else:
-            print("Invalid point; try again")
-    else:
-        print("No points added.")
-    return(s, usp, intel, a, st, l)
+            while amount<0 or amount>usp:
+                print("Impossible")
+                amount=int(input("How many points do you want to add?: "))
+            if pa=='Strength':
+                s+=amount
+                usp-=amount
+            elif pa=='Intellect':
+                intel+=amount
+                usp-=amount
+            elif pa=='Agility':
+                a+=amount
+                usp-=amount
+            elif pa=='Stamina':
+                st+=amount
+                usp-=amount
+            elif pa=='Luck':
+                l+=amount
+                usp-=amount
+            else:
+                print("Invalid point; try again")
+            if usp>0:
+                sp=str(input("Will you assign your points? Yes or No: "))
+        if sp!="Yes":
+            print("No points added.")
+        return(s, usp, intel, a, st, l)
 
 def g(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp):
     if lvl==1 and XP>=maxXP:
@@ -171,7 +173,8 @@ def g(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp):
         print("You have received the skill: Watershot (5 mana, 3*intelligence on 1 creature)")
         Skills.append(", Watershot (5 mana, 3*intelligence on 1 creature)")
         print(f"Unassigned Stat Points: {usp}")
-        h(s, usp, intel, a, st, l);
+        if usp>0:
+            s, usp, intel, a, st, l=h(s, usp, intel, a, st, l);
         save();
     if lvl==10 and XP>=maxXP:
         XP-=maxXP
@@ -189,16 +192,16 @@ def g(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp):
         usp+=3
         print("Level up")
         f(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp)
-        print("You have received the skill: Watershot (5 mana, 3*intelligence on 1 creature)")
-        Skills.append(", Watershot (5 mana, 3*intelligence on 1 creature)")
+        print("You have received the skill: Watershot (5 mana, 4*intelligence on 1 creature)")
+        Skills.append(", Watershot (5 mana, 4*intelligence on 1 creature)")
         print(f"Unassigned Stat Points: {usp}")
-        h(s, usp, intel, a, st, l);
+        if usp>0:
+            s, usp, intel, a, st, l=h(s, usp, intel, a, st, l);
         save();
     return(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp)
 
 if monsters==1:
     HPgoblin=20
-    HPhobgoblin=50
     HPslime=10
     HPzombie=40
     HPkobolds=75
@@ -263,7 +266,6 @@ if monsters==1:
     HPDemonlord=100000
     
     HPg=HPgoblin
-    HPh=HPhobgoblin
     HPs=HPslime
     HPgh=HPghoul
     HPd=HPdragon
@@ -319,7 +321,7 @@ if story==1:
     maxMP=10
     ENh=10
     maxEN=10
-    lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp= load(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp)
+    lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp= load(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp, ex)
     if lvl==1:
         name=str(input("Welcome Hero, what might your name be: "))
         print(f"Welcome {name}. You have been summoned to this world called Aether. Your goal is to reach level 100 and beat the demon lord. Good luck.")
@@ -327,7 +329,8 @@ if story==1:
     else:
         print("Welcome back. Let's continue the game. Here are your stats!")
     f(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp)
-    s, usp, intel, a, st, l=h(s, usp, intel, a, st, l)
+    if usp>0:
+        s, usp, intel, a, st, l=h(s, usp, intel, a, st, l)
     while lvl<10:
         if HPh<=0:
             break
@@ -344,9 +347,12 @@ if story==1:
                 gob3=HPg
             if gob>=6:
                 gob6=HPg
+                gob5=HPg
+                gob4=HPg
                 d=1
             if gob>=5:
                 gob5=HPg
+                gob4=HPg
                 c=1
             if gob==4:
                 gob4=HPg
@@ -797,9 +803,12 @@ if story==1:
                 kob3=HPkobolds
             if kob>=6:
                 kob6=HPkobolds
+                kob5=HPkobolds
+                kob4=HPkobolds
                 d=1
             if kob>=5:
                 kob5=HPkobolds
+                kob4=HPkobolds
                 c=1
             if kob==4:
                 kob4=HPkobolds
@@ -1237,9 +1246,12 @@ if story==1:
                 zomb3=HPzombie
             if zomb>=6:
                 zomb6=HPzombie
+                zomb5=HPzombie
+                zomb4=HPzombie
                 d=1
             elif zomb>=5:
                 zomb5=HPzombie
+                zomb4=HPzombie
                 c=1
             elif zomb==4:
                 zomb4=HPzombie
@@ -2417,8 +2429,8 @@ if story==1:
                         elif 19<l<30:
                             crit=rnd.randint(1, 10)
                             if crit>=7:
-                                gob2=gob2-2*intel
-                                gob1=gob1-2*intel
+                                mgob2=mgob2-2*intel
+                                mgob1=mgob1-2*intel
                                 HPgoblinking-=2*intel
                                 if mgob>0:
                                     print("The mage goblins thought you were firing a fire type spell and protected themselves with water. As you expect, it did twice the amount of damge!")
@@ -2564,6 +2576,76 @@ if story==1:
                                 print("You hit the goblin king's jewels! You dealt twice as much damage!")
                             else:
                                 HPgoblinking=HPgoblinking-s
+                        if HPgoblinking<=0:
+                            print("Congratulations, you have killed the goblin king. You received 100XP")
+                            XP+=1000
+                            gobk-=1
+                            lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp=g(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp)
+                    if HPgoblinking>0:
+                        print(f"The goblin king has {HPgoblinking}HP remaining.")
+                    acc=rnd.randint(1,20)
+                    if acc==20:
+                        at=mgob*10+gobk*10
+                    elif 0<acc<20:
+                        at=mgob*2+gobk*7
+                    HPh-=at
+                    print(f'HP: {HPh}')
+                    if HPh<=0:
+                        print("Game Over")
+                        break
+                elif attack=='Watershot' and MPh>=5:
+                    MPh-=2
+                    if mgob>0:
+                        if l<10:
+                            mgob1=mgob1-4*intel
+                        elif 9<l<20:
+                            crit=rnd.randint(1, 10)
+                            if crit==10:
+                                mgob1=mgob1-8*intel
+                                if mgob>0:
+                                    print("The mage goblins protected themselves with an electric cage, the watershot became an electric watershot and delt twice as much damage!")
+                                print("The goblin king forgot about you for a second and forgot to block your watershot, it delt twice the damage!")
+                            else:
+                                mgob1=mgob1-4*intel
+                        elif 19<l<30:
+                            crit=rnd.randint(1, 10)
+                            if crit>=7:
+                                mgob1=mgob1-8*intel
+                                if mgob>0:
+                                    print("The mage goblins protected themselves with an electric cage, the watershot became an electric watershot and delt twice as much damage!")
+                                print("The goblin king forgot about you for a second and forgot to block your watershot, it delt twice the damage!")
+                            else:
+                                mgob1=mgob1-4*intel
+                        if mgob1<=0:
+                            print("Congratulations, you have killed a goblin. You received 7XP")
+                            XP+=7
+                            mgob-=1
+                            if mgob==2:
+                                mgob1=mgob3
+                            if mgob==1:
+                                mgob1=mgob2
+                            elif mgob==0:
+                                mgob1=HPgoblinking
+                            lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp=g(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp)
+                        elif mgob1>0:
+                            print(f"The goblin has {gob1}HP remaining")
+                    elif mgob==0:
+                        if l<10:
+                            HPgoblinking=HPgoblinking-2*intel
+                        elif 9<l<20:
+                            crit=rnd.randint(1, 10)
+                            if crit==10:
+                                HPgoblinking=HPgoblinking-4*intel
+                                print("The goblin king forgot about you for a second and forgot to block your fireball, it delt twice the damage!")
+                            else:
+                                HPgoblinking=HPgoblinking-2*intel
+                        elif 19<l<30:
+                            crit=rnd.randint(1, 10)
+                            if crit>=7:
+                                HPgoblinking=HPgoblinking-4*intel
+                                print("The goblin king forgot about you for a second and forgot to block your fireball, it delt twice the damage!")
+                            else:
+                                HPgoblinking=HPgoblinking-2*intel
                         if HPgoblinking<=0:
                             print("Congratulations, you have killed the goblin king. You received 100XP")
                             XP+=1000
