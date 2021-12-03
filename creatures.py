@@ -2,13 +2,18 @@
 class Creatures:
     """This class is for all the creatures. """
     def __init__(self):
-        pass
+        self.name = ""
 
 
-HPgoblin = 20
-HPhobgoblin = 50
-HPslime = 10
-HPzombie = 40
+    def creature_name(self):
+        c_names = [ ['goblin', 20],
+                    ['hobgoblin', 50],
+                    ['slime', 10],
+                    ['zombie', 40],
+        ]
+
+
+"""        
 HPkobolds = 75
 HPghost = 75
 
@@ -69,16 +74,4 @@ HPchimera = 30000
 HPdragon = 50000
 
 HPDemonlord = 100000
-
-HPg = HPgoblin
-HPh = HPhobgoblin
-HPs = HPslime
-HPgh = HPghoul
-HPd = HPdragon
-HPo = HPorc
-HPsp = HPspider
-HPl = HPlich
-HPss = HPskeletonsoldier
-HPsk = HPskeletonknight
-HPgo = HPgolem
-HPde = HPdemonlackey
+"""
