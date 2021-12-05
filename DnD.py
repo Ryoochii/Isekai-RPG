@@ -1,15 +1,15 @@
 import random as rnd
-from player import Players as player1
-import gamedata as gamedata
-import creatures as creatures
+from player import Players
+from gamedata import GameData
+from creatures import Creatures
 from sys import exit
 
-classes = rnd.randint(1, 1)
+player1 = Players()
+gamedata = GameData()
+creatures = Creatures()
 story = 1
-XP = 0
-maxXP = 10
 
-
+"""
 def g(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp):
     if lvl == 1 and XP >= maxXP:
         XP -= maxXP
@@ -59,7 +59,7 @@ def g(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp):
         print("Level up")
         f(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp)
         save()
-    while lvl >= 4 and lvl < 10 and XP >= maxXP:
+    while (3 < lvl < 10) and XP >= maxXP:
         XP -= maxXP
         lvl += 1
         maxXP = 100
@@ -92,7 +92,7 @@ def g(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp):
         print("Level up")
         f(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp)
         print("You have received the skill: Watershot (5 mana, 3*intelligence on 1 creature)")
-        Skills.append(", Watershot (5 mana, 3*intelligence on 1 creature)")
+        Skills.append()
         print(f"Unassigned Stat Points: {usp}")
         h(s, usp, intel, a, st, l);
         save();
@@ -122,63 +122,7 @@ def g(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp):
 
 
 if story == 1:
-    if classes == 1:
-        Job = 'Magician'
-        strength = rnd.randint(7, 11)
-        intellect = rnd.randint(12, 16)
-        agility = rnd.randint(8, 12)
-        stamina = rnd.randint(12, 16)
-        luck = rnd.randint(8, 12)
-        Unassigned_statpoints = rnd.randint(1, 3)
-        skills = ["Fireball, Heal, Electrocute"]
-        Skills = [
-            "Fireball (2 mana; 2*intellect on 1 enemy), Heal (3 mana; heal yourself for 50 HP), Electrocute (3 mana; 1*intellect to all creatures), Hit (0 mana; 1*strength on 1 enemmy)"]
-    if classes == 2:
-        Job = 'Warrior'
-        strength = rnd.randint(12, 16)
-        intellect = rnd.randint(7, 11)
-        agility = rnd.randint(8, 12)
-        stamina = rnd.randint(8, 12)
-        luck = rnd.randint(12, 16)
-        Unassigned_statpoints = rnd.randint(1, 3)
-        skills = ["Pierce, Slice, Strengthen, Hit"]
-        Skills = [
-            "Pierce (2 energy; 2*strength on max 3 ennemies), Slice (3 energy; 4*strength on one enemmy), Strengthen (4 energy, augment your shield by 50 for 3 turns) or Hit (0 energy; 1*strength on 1 enemmy)"]
-    if classes == 3:
-        Job = 'Archer'
-        strength = rnd.randint(8, 12)
-        intellect = rnd.randint(8, 12)
-        agility = rnd.randint(12, 16)
-        stamina = rnd.randint(7, 11)
-        luck = rnd.randint(12, 16)
-        Unassigned_statpoints = rnd.randint(1, 3)
-        skills = ["Hawkeye, Piercing arrow, Heavy arrow"]
-    s = strength
-    intel = intellect
-    a = agility
-    st = stamina
-    l = luck
-    usp = Unassigned_statpoints
-    lvl = 1
-    XP = 0
-    maxXP = 10
-    HPh = 10
-    maxHP = 10
-    MPh = 10
-    maxMP = 10
-    ENh = 10
-    maxEN = 10
-    lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp = load(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s,
-                                                                           intel, a, st, l, usp)
     if lvl == 1:
-        name = str(input("Welcome Hero, what might your name be: "))
-        print(
-            f"Welcome {name}. You have been summoned to this world called Aether. Your goal is to reach level 100 and beat the demon lord. Good luck.")
-        print("Say status. (You prounounce the word status. A screen appears in front of you)")
-    else:
-        print("Welcome back. Let's continue the game. Here are your stats!")
-    f(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp)
-    s, usp, intel, a, st, l = h(s, usp, intel, a, st, l)
     while lvl < 10:
         if HPh <= 0:
             break
@@ -2857,6 +2801,33 @@ if story == 1:
             print("You have set out on a new adventure.")
     if lvl == 100:
         print("You have arrived to the Demon king's palace.")
+"""
+def new_game() -> None:
+    player1.p_name = str(input("Welcome Hero, what might your name be: "))
+    print(f"Welcome {player1.p_name}. You have been summoned to this world called Aether. " \
+          "Your goal is to reach level 100 and beat the demon lord. Good luck.")
+    print("Say status. (You prounounce the word status. A screen appears in front of you)")
+    player1.display_info()
+    user_input = str(input("Please hit enter to continue"))
+    print()
+    print()
+    return
+
+def game() -> None:
+    game_play = True
+    while game_play:
+        s_location = str(input("Where will you go on your adventure? Mountain, Forest, Dungeon or Plains: "))
+        if s_location.lower() not in ['forest', 'f', 'mountian', 'm',
+                                      'dungeon', 'd', 'plains', 'p']:
+            print('Incorrect Answer. Please try again')
+        elif s_location.lower() in ['mountian', 'm']:
+            print("You have set out on your adventure.")
+            print("After a moment of thinking, you decide to go to the mountains.")
+            print("You arrive at a beginner mountain known for it's weak monsters.")
+            print(f"While traveling, you get ambushed by a group of {creatures.num_cs} kobolts.")
+            print(creatures.fight_creatures)
+            game_play = False
+    return
 
 
 def game_menu():
@@ -2870,6 +2841,7 @@ def game_menu():
             print('Incorrect selection. Pleas try again\n')
         elif user_input == '1':
             new_game()
+            game()
         elif user_input == '2':
             gamedata.load_game(player1)
             game()

@@ -1,17 +1,34 @@
+import random
 
-class Creatures:
+class Creatures():
     """This class is for all the creatures. """
     def __init__(self):
         self.name = ""
+        self.num_cs = self.num_c()
+        self.fight_creatures = self.creature_name()
 
+    def num_c(self) -> int:
+        return random.randint(3, 6)
 
-    def creature_name(self):
-        c_names = [ ['goblin', 20],
-                    ['hobgoblin', 50],
-                    ['slime', 10],
-                    ['zombie', 40],
+    def fight(self) -> list:
+        temp_n = []
+        for i in range(self.num_cs):
+            temp_n.append('1')
+        return temp_n
+
+    def creature_name(self) -> dict:
+        temp_n = {}
+        c_names = {'name': 'goblin', 'hp': 20, 'attackpower': 1}
+        for i in range(self.num_cs):
+            temp_n[i] = c_names
+        return temp_n
+
+"""                   
+                    ('hobgoblin', 50),
+                    ('slime', 10),
+                    ('zombie', 40),
         ]
-
+"""
 
 """        
 HPkobolds = 75
