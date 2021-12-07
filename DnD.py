@@ -2808,6 +2808,7 @@ def new_game() -> None:
           "Your goal is to reach level 100 and beat the demon lord. Good luck.")
     print("Say status. (You prounounce the word status. A screen appears in front of you)")
     player1.display_info()
+    player1.unassigned_points()
     user_input = str(input("Please hit enter to continue"))
     print()
     print()
