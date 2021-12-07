@@ -2817,10 +2817,10 @@ def game() -> None:
     game_play = True
     while game_play:
         s_location = str(input("Where will you go on your adventure? Mountain, Forest, Dungeon or Plains: "))
-        if s_location.lower() not in ['forest', 'f', 'mountian', 'm',
+        if s_location.lower() not in ['forest', 'f', 'mountain', 'm',
                                       'dungeon', 'd', 'plains', 'p']:
             print('Incorrect Answer. Please try again')
-        elif s_location.lower() in ['mountian', 'm']:
+        elif s_location.lower() in ['mountain', 'm']:
             print("You have set out on your adventure.")
             print("After a moment of thinking, you decide to go to the mountains.")
             print("You arrive at a beginner mountain known for it's weak monsters.")
@@ -2843,8 +2843,13 @@ def game_menu():
             new_game()
             game()
         elif user_input == '2':
-            gamedata.load_game(player1)
-            game()
+            if gamedata.file_exists:
+                gamedata.load_data(player1)
+                game()
+            else:
+                print('File doesnt exist. Creating a new file.')
+                new_game()
+                game()
         elif user_input == '3':
             options_menu()
         elif user_input == '4':
