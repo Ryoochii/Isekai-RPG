@@ -2866,7 +2866,7 @@ def options_menu(difficulty):
         print("Easy (1)")
         print("Medium (2)")
         print("Hard (3)")
-        print("Impossible (4)")
+        print("Extreme (4)")
         difficulty=str(input('Insert: '))
         if difficulty not in ['1', '2', '3', '4']:
             print('Incorrect selection. Pleas try again\n')
@@ -2880,8 +2880,9 @@ def options_menu(difficulty):
             print("We need to do the game hard")
             diff=1
         elif difficulty == '4':
-            print("We need to do the game impossible")
+            print("We need to do the game extreme")
             diff=1
+        return difficulty
 
 if __name__ == '__main__':
     game_menu()
