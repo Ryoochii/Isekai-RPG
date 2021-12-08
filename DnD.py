@@ -8,6 +8,7 @@ player1 = Players()
 gamedata = GameData()
 creatures = Creatures()
 story = 1
+difficulty=1
 
 """
 def g(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp):
@@ -2837,7 +2838,7 @@ def game_menu():
         print('(2) Load Game')
         print('(3) Options')
         print('(4) Exit Game')
-        user_input = str(input('? '))
+        user_input = str(input('Insert: '))
         if user_input not in ['1', '2', '3', '4']:
             print('Incorrect selection. Pleas try again\n')
         elif user_input == '1':
@@ -2852,14 +2853,35 @@ def game_menu():
                 new_game()
                 game()
         elif user_input == '3':
-            options_menu()
+            options_menu(difficulty)
         elif user_input == '4':
             exit()
 
 
-def options_menu():
+def options_menu(difficulty):
+    diff=0
     print('needs to be added')
-
+    while diff==0:
+        print("What difficulty will you chose?")
+        print("Easy (1)")
+        print("Medium (2)")
+        print("Hard (3)")
+        print("Impossible (4)")
+        difficulty=str(input('Insert: '))
+        if difficulty not in ['1', '2', '3', '4']:
+            print('Incorrect selection. Pleas try again\n')
+        elif difficulty == '1':
+            print("We need to do the game easy")
+            diff=1
+        elif difficulty == '2':
+            print("We need to do the game a bit harder")
+            diff=1
+        elif difficulty == '3':
+            print("We need to do the game hard")
+            diff=1
+        elif difficulty == '4':
+            print("We need to do the game impossible")
+            diff=1
 
 if __name__ == '__main__':
     game_menu()
