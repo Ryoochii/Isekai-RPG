@@ -36,6 +36,8 @@ class Players:
         self.usp = 10
         self.skills = self.get_skills(self.p_class)
         self.set_attt()
+        # difficulty
+        self.difficulty = 0
 
     def display_info(self) -> None:
         print(f"Level: {self.lvl}   XP: {int(self.XP):,}/{int(self.maxXP):,}")

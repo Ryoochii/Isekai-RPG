@@ -1,14 +1,16 @@
-import random as rnd
+import random
 from player import Players
 from gamedata import GameData
 from creatures import Creatures
-from sys import exit
+from question import Questions
+# from sys import exit
 
 player1 = Players()
 gamedata = GameData()
 creatures = Creatures()
+questions = Questions()
 story = 1
-difficulty=1
+difficulty = 1
 
 """
 def g(lvl, XP, maxXP, HPh, maxHP, MPh, maxMP, s, intel, a, st, l, usp):
@@ -2805,7 +2807,7 @@ if story == 1:
 """
 def new_game() -> None:
     player1.p_name = str(input("Welcome Hero, what might your name be: "))
-    print(f"Welcome {player1.p_name}. You have been summoned to this world called Aether. " \
+    print(f"Welcome {player1.p_name}. You have been summoned to this world called Aether. "
           "Your goal is to reach level 100 and beat the demon lord. Good luck.")
     print("Say status. (You prounounce the word status. A screen appears in front of you)")
     player1.display_info()
@@ -2829,60 +2831,51 @@ def game() -> None:
             print(f"While traveling, you get ambushed by a group of {creatures.num_cs} kobolts.")
             print(creatures.fight_creatures)
             game_play = False
+            print('\n\n\n')
     return
 
 
-def game_menu():
+def game_menu() -> None:
     while True:
-        print('(1) New Game')
-        print('(2) Load Game')
-        print('(3) Options')
-        print('(4) Exit Game')
-        user_input = str(input('Insert: '))
-        if user_input not in ['1', '2', '3', '4']:
-            print('Incorrect selection. Pleas try again\n')
-        elif user_input == '1':
+        user_input = questions.main_menu()
+        if user_input == '1':
             new_game()
             game()
         elif user_input == '2':
-            if gamedata.file_exists:
-                gamedata.load_data(player1)
+            if gamedata.load_game(player1, creatures):
+                # Game data loaded successfully continuing with game
                 game()
             else:
-                print('File doesnt exist. Creating a new file.')
                 new_game()
                 game()
         elif user_input == '3':
-            options_menu(difficulty)
+            options_menu()
         elif user_input == '4':
-            exit()
+            break
+    return
+
+def options_menu() -> None:
+    user_input = questions.option_menu()
+    if user_input == '1':
+        difficulty_selection()
+    return
 
 
-def options_menu(difficulty):
-    diff=0
-    print('needs to be added')
-    while diff==0:
+def difficulty_selection() -> None:
+    while True:
         print("What difficulty will you chose?")
-        print("Easy (1)")
-        print("Medium (2)")
-        print("Hard (3)")
-        print("Extreme (4)")
-        difficulty=str(input('Insert: '))
+        print("(1) Easy")
+        print("(2) Medium")
+        print("(3) Hard")
+        print("(4) Extreme")
+        difficulty = str(input('Insert: '))
         if difficulty not in ['1', '2', '3', '4']:
             print('Incorrect selection. Pleas try again\n')
-        elif difficulty == '1':
-            print("We need to do the game easy")
-            diff=1
-        elif difficulty == '2':
-            print("We need to do the game a bit harder")
-            diff=1
-        elif difficulty == '3':
-            print("We need to do the game hard")
-            diff=1
-        elif difficulty == '4':
-            print("We need to do the game extreme")
-            diff=1
-        return difficulty
+        else:
+            player1.difficulty = int(difficulty)
+            break
+    return
+
 
 if __name__ == '__main__':
     game_menu()
