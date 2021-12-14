@@ -2806,15 +2806,16 @@ if story == 1:
         print("You have arrived to the Demon king's palace.")
 """
 def new_game() -> None:
-    player1.p_name = str(input("Welcome Hero, what might your name be: "))
-    print(f"Welcome {player1.p_name}. You have been summoned to this world called Aether. "
+    player1.p_name = str(input("Welcome, what might your name be: "))
+    print(f"Welcome {player1.p_name}. I, the god of life, have decided to give you a second chance. "
+          "I am going to send you to a world of swords and magic."
           "Your goal is to reach level 100 and beat the demon lord. Good luck.")
-    print("Say status. (You prounounce the word status. A screen appears in front of you)")
+    user_input = str(input("Please hit enter to continue"))
+    print("The god sent you on your way. When you wake up, you realise you are an infant, unable to do anything. You then remember that the god told you to say status.")
+    print("(You prounounce the word status. A screen appears in front of you)")
     player1.display_info()
     player1.unassigned_points()
-    user_input = str(input("Please hit enter to continue"))
-    print()
-    print()
+    print("It is at that moment that you realised that this is the start of your adventure.")
     return
 
 def game() -> None:
