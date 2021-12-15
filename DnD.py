@@ -2815,7 +2815,8 @@ def new_game() -> None:
     print("(You prounounce the word status. A screen appears in front of you)")
     player1.display_info()
     player1.unassigned_points()
-    print("It is at that moment that you realised that this is the start of your adventure.")
+    print("\n"
+        "It is at that moment that you realised that this is the start of your adventure.")
     return
 
 def game() -> None:
@@ -2826,33 +2827,40 @@ def game() -> None:
                                       'dungeon', 'd', 'plains', 'p']:
             print('Incorrect Answer. Please try again')
         elif s_location.lower() in ['mountain', 'm']:
+            monster=creatures.num_cs
             print("You have set out on your adventure.")
             print("After a moment of thinking, you decide to go to the mountains.")
             print("You arrive at a beginner mountain known for it's weak monsters.")
-            print(f"While traveling, you get ambushed by a group of {creatures.num_cs} kobolts.")
+            print(f"While traveling, you get ambushed by a group of {monster} kobolts.")
             print(creatures.fight_creatures)
             game_play = False
             print('\n\n\n')
         elif s_location.lower() in ['forest', 'f']:
+            monster=creatures.num_cs
             print("You have set out on your adventure.")
             print("After a moment of thinking, you decide to go to a forest.")
             print("You arrive at a dense forrest known for it's weak monsters.")
             print("In the forrest, you see a goblin encampment.")
-            print(f"After watching for a moment, you manage to see a total of {creatures.num_cs} goblins.")
+            print(f"After watching for a moment, you manage to see a total of {monster} goblins.")
+            print(creatures.fight_creatures)
             game_play=False
             print('\n\n\n')
         elif s_location.lower() in ['dungeon', 'd']:
+            monster=creatures.num_cs
             print("You have set out on your adventure.")
             print("After a moment of thinking, you decide to go to a beginner dungeon.")
             print("You arrive at a dungeon where many beginners meet up to start a new adventure.")
-            print(f"While walking around in the dungeon, you find a small group of {creatures.num_cs} zombies.")
+            print(f"While walking around in the dungeon, you find a small group of {monster} zombies.")
+            print(creatures.fight_creatures)
             game_play=False
             print('\n\n\n')
         elif s_location.lower() in ['plains', 'plain', 'p']:
+            monster=creatures.num_cs+3
             print("You have set out on your adventure.")
             print("After a moment of thinking, you decide to go to a plain.")
             print("You arrive at a wide plain where you can easily perceive monsters.")
-            print(f"You perceive {creatures.num_cs} slimes. You engage in a combat.")
+            print(f"You perceive {monster} slimes. You engage in a combat.")
+            print(creatures.fight_creatures)
             game_play=False
             print('\n\n\n')
     return
