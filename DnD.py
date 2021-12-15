@@ -2816,7 +2816,9 @@ def new_game() -> None:
     
     return
 
-def game() -> None:
+def game(continu) -> None:
+    if continu==1:
+        print(f"Welcome back {player1.p_name}. Here are your stats!")
     player1.display_info()
     player1.unassigned_points()
     print("\n"
@@ -2868,18 +2870,20 @@ def game() -> None:
 
 
 def game_menu() -> None:
+    continu=0
     while True:
         user_input = questions.main_menu()
         if user_input == '1':
             new_game()
-            game()
+            game(continu)
         elif user_input == '2':
             if gamedata.load_game(player1, creatures):
                 # Game data loaded successfully continuing with game
-                game()
+                continu=1
+                game(continu)
             else:
                 new_game()
-                game()
+                game(continu)
         elif user_input == '3':
             options_menu()
         elif user_input == '4':
