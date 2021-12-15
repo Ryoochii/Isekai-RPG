@@ -2833,6 +2833,28 @@ def game() -> None:
             print(creatures.fight_creatures)
             game_play = False
             print('\n\n\n')
+        elif s_location.lower() in ['forest', 'f']:
+            print("You have set out on your adventure.")
+            print("After a moment of thinking, you decide to go to a forest.")
+            print("You arrive at a dense forrest known for it's weak monsters.")
+            print("In the forrest, you see a goblin encampment.")
+            print(f"After watching for a moment, you manage to see a total of {creatures.num_cs} goblins.")
+            game_play=False
+            print('\n\n\n')
+        elif s_location.lower() in ['dungeon', 'd']:
+            print("You have set out on your adventure.")
+            print("After a moment of thinking, you decide to go to a beginner dungeon.")
+            print("You arrive at a dungeon where many beginners meet up to start a new adventure.")
+            print(f"While walking around in the dungeon, you find a small group of {creatures.num_cs} zombies.")
+            game_play=False
+            print('\n\n\n')
+        elif s_location.lower() in ['plains', 'plain', 'p']:
+            print("You have set out on your adventure.")
+            print("After a moment of thinking, you decide to go to a plain.")
+            print("You arrive at a wide plain where you can easily perceive monsters.")
+            print(f"You perceive {creatures.num_cs} slimes. You engage in a combat.")
+            game_play=False
+            print('\n\n\n')
     return
 
 
