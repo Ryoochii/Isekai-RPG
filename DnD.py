@@ -2889,6 +2889,13 @@ def options_menu() -> None:
     user_input = questions.option_menu()
     if user_input == '1':
         difficulty_selection()
+    if user_input=='2':
+        print('\n'
+              'Thank you for playing our game!''\n\n'
+              'Developpers: \n'
+              'Navid Lahidji Hosseiny''\n'
+              'Insert your name'
+              '\n\n\n')
     return
 
 
@@ -2900,6 +2907,7 @@ def difficulty_selection() -> None:
         print("(3) Hard")
         print("(4) Extreme")
         difficulty = str(input('Insert: '))
+        print('\n\n')
         if difficulty not in ['1', '2', '3', '4']:
             print('Incorrect selection. Pleas try again\n')
         else:

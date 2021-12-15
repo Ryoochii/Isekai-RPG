@@ -59,7 +59,7 @@ class Players:
     def unassigned_points(self) -> None:
         while self.usp > 0:
             print(f'You have {self.usp} points to spend')
-            user_input = str(input('Would you like to spend your points (Yes, No)?'))
+            user_input = str(input('Would you like to spend your points (Yes, No)? '))
             if user_input.lower() not in ['yes', 'no', 'n', 'y']:
                 print('Incorrect answer. Please try again')
             elif user_input.lower() in ['no', 'n']:
@@ -74,7 +74,7 @@ class Players:
                     print('(A)gility')
                     print('S(t)amina')
                     print('(L)uck')
-                    user_input = str(input('? '))
+                    user_input = str(input('Insert: '))
                     if user_input.lower() not in ['s', 'i', 'a', 't', 'l']:
                         print('Incorrect answer. Please try again')
                     else:

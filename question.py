@@ -28,7 +28,8 @@ class Questions:
             print('(2) Load Game')
             print('(3) Options')
             print('(4) Exit Game')
-            user_input = input('?: ')
+            user_input = input('Input: ')
+            print('\n')
             if self.checking_answer(user_input):
                 break
         return user_input
@@ -40,7 +41,8 @@ class Questions:
         while True:
             print('(1) Difficultly selection')
             print('(2) Credits')
-            user_input = input('?: ')
+            user_input = input('Input: ')
+            print('\n')
             if self.checking_answer(user_input):
                 break
         return user_input
