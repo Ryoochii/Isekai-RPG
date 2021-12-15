@@ -2813,13 +2813,14 @@ def new_game() -> None:
     user_input = str(input("Please hit enter to continue"))
     print("The god sent you on your way. When you wake up, you realise you are an infant, unable to do anything. You then remember that the god told you to say status.")
     print("(You prounounce the word status. A screen appears in front of you)")
+    
+    return
+
+def game() -> None:
     player1.display_info()
     player1.unassigned_points()
     print("\n"
         "It is at that moment that you realised that this is the start of your adventure.")
-    return
-
-def game() -> None:
     game_play = True
     while game_play:
         s_location = str(input("Where will you go on your adventure? Mountain, Forest, Dungeon or Plains: "))
@@ -2901,7 +2902,7 @@ def options_menu() -> None:
 
 def difficulty_selection() -> None:
     while True:
-        print("What difficulty will you chose?")
+        print("What difficulty will you choose?")
         print("(1) Easy")
         print("(2) Medium")
         print("(3) Hard")
