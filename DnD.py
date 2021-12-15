@@ -2859,7 +2859,7 @@ def game() -> None:
             print("You have set out on your adventure.")
             print("After a moment of thinking, you decide to go to a plain.")
             print("You arrive at a wide plain where you can easily perceive monsters.")
-            print(f"You perceive {monster} slimes. You engage in a combat.")
+            print(f"You perceive {monster} slimes and decide to engage in a combat.")
             print(creatures.fight_creatures)
             game_play=False
             print('\n\n\n')
