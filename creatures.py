@@ -1,22 +1,32 @@
 import random
 
 
-def num_c() -> int:
-    return random.randint(3, 6)
-
-
 class Creatures:
-    """This class is for all the creatures. """
-    def __init__(self):
-        self.num_cs = num_c()
-        self.fight_creatures = self.fight_party()
-        self.c_names = {}
+    """This class is for all the creatures. It holds all info of the
+    creatures. Creates the party for the attacks."""
 
-    def fight_party(self) -> dict:
+    def __init__(self):
+        # random number between 3 and 6 creatures for a party
+        self.num_cs = 0
+        self.num_c()
+        # c_names holds a dict of all the creatures
+        self.c_names = {}
+        # c_names_list holds the creatures names to make the party
+        self.c_names_list = []
+        self.name_list()
+        # creating the party with random creatures per level
+        self.fight_creatures = self.fight_party()
+
+    def num_c(self) -> None:
+        self.num_cs = random.randint(3, 6)
+        return
+
+    def fight_party(self, level=1) -> dict:
         temp_n = {}
-        self.creature_name()
+        if self.c_names == {}:
+            self.creature_name()
         for i in range(self.num_cs):
-            temp_n[i] = self.c_names['goblin']['name']
+            temp_n[i] = self.c_names[self.creature_group(level)]
         return temp_n
 
     def creature_name(self) -> None:
@@ -34,7 +44,7 @@ class Creatures:
                         'ghoul': {'name': 'ghoul', 'hp': 250, 'attackpower': 1},
                         'spiderqueen': {'name': 'spiderqueen', 'hp': 500, 'attackpower': 1},
                         'orc': {'name': 'orc', 'hp': 400, 'attackpower': 1},
-                        'beastmen': {'name': 'beatman', 'hp': 500, 'attackpower': 1},
+                        'beastman': {'name': 'beatman', 'hp': 500, 'attackpower': 1},
                         'basilisk': {'name': 'baskilisk', 'hp': 500, 'attackpower': 1},
                         'centipede': {'name': 'centipede', 'hp': 600, 'attackpower': 1},
                         'centaur': {'name': 'centaur', 'hp': 650, 'attackpower': 1},
@@ -63,8 +73,43 @@ class Creatures:
                         'phoenix': {'name': 'phoenix', 'hp': 19000, 'attackpower': 1},
                         'lich': {'name': 'lich', 'hp': 17500, 'attackpower': 1},
                         'vampire': {'name': 'vampire', 'hp': 20000, 'attackpower': 1},
-                        'giant': {'name': 'gaint', 'hp': 25000, 'attackpower': 1},
+                        'giant': {'name': 'giant', 'hp': 25000, 'attackpower': 1},
                         'chimera': {'name': 'chimera', 'hp': 30000, 'attackpower': 1},
                         'dragon': {'name': 'dragon', 'hp': 50000, 'attackpower': 1},
                         'demonlord': {'name': 'demonlord', 'hp': 100000, 'attackpower': 1}}
+
+    def name_list(self):
+        self.c_names_list = ['goblin', 'hobgoblin', 'slime', 'zombie', 'kobolds', 'ghost',
+                             'goblinking', 'spider', 'wolf', 'skeletonsoldier', 'skeletonknight',
+                             'ghoul', 'spiderqueen', 'orc',  'beastman', 'basilisk', 'centipede',
+                             'centaur', 'satyr', 'earthelemental', 'fireelemental', 'waterelemental',
+                             'windelemental', 'fusedelemtneal', 'fairy', 'elf', 'dwarf', 'darkknight',
+                             'darkmage', 'skeletondragon', 'golem', 'minotaur', 'demonlackey',
+                             'werewolf', 'succubi', 'kraken', 'manticore', 'darkelf', 'wyvern',
+                             'troll', 'phoenix', 'lich', 'vampire', 'giant', 'chimera',
+                             'dragon', 'demonlord']
         return
+
+    def creature_group(self, level=1) -> str:
+        l, h = 0, 0
+        if 0 < level <= 10:
+            l, h = 0, 4
+        elif 10 < level <= 20:
+            l, h = 4, 9
+        elif 20 < level <= 30:
+            l, h = 9, 14
+        elif 30 < level <= 40:
+            l, h = 14, 19
+        elif 40 < level <= 50:
+            l, h = 19, 24
+        elif 50 < level <= 60:
+            l, h = 24, 29
+        elif 60 < level <= 70:
+            l, h = 29, 34
+        elif 70 < level <= 80:
+            l, h = 34, 39
+        elif 80 < level <= 90:
+            l, h = 39, 44
+        elif 90 < level <= 100:
+            l, h = 40, 46
+        return self.c_names_list[random.randint(l, h)]
