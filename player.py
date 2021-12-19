@@ -1,9 +1,8 @@
-import json
 import random
 
 
 class Players:
-    """This class holds all of the player information."""
+    """This class holds all the player information."""
 
     def __init__(self):
         self.p_name = ""
@@ -19,11 +18,13 @@ class Players:
         self.job = ['Magician', 'Warrior', 'Archer', '?']
         # classes
         self.p_class = random.randint(0, 0)
-        # Health power
+        # Health
         self.HPh = 10
         self.maxHP = 10
+        # Mana for Magician class
         self.MPh = 10
         self.maxMP = 10
+        # Energy for Warrior and Archer class
         self.ENh = 10
         self.maxEN = 10
         # Stats
@@ -33,26 +34,33 @@ class Players:
         self.Agility = 0
         self.Stamina = 0
         self.Luck = 0
+        # Calls the attribute function to give your player stats for its class
+        self.set_stats()
+        # Unassigned points that allow you to boost your stats through the game
         self.usp = 10
-        self.skills = self.get_skills(self.p_class)
-        self.set_attt()
+        # skills for each class
+        self.skills = {}
+        self.get_skills()
         # difficulty
         self.difficulty = 0
+        # players current location
+        self.location = 'Home'
 
     def display_info(self) -> None:
         print(f"Level: {self.lvl}   XP: {int(self.XP):,}/{int(self.maxXP):,}")
         print(f"Job: {self.job[self.p_class]} Class: {self.p_class}")
-        print(f"HP: {self.HPh}/{self.maxHP}")
-        if self.p_class == 1:
-            print(f"MP: {self.MPh}/{self.maxMP}")
-        elif self.p_class in [2, 3]:
+        for k, v in self.skills[self.job[self.p_class]].items():
+            print(f"    Skill: {v['name']}")
+        print(f"Health Power: {self.HPh}/{self.maxHP}")
+        if self.p_class == 0:
+            print(f"Mana Power: {self.MPh}/{self.maxMP}")
+        elif self.p_class in [1, 2]:
             print(f"Energy: {self.ENh}/{self.maxEN}")
         print(f"Strength: {self.Strength}")
         print(f"Intellect: {self.Intellect}")
         print(f"Agility: {self.Agility}")
         print(f"Stamina: {self.Stamina}")
         print(f"Luck: {self.Luck}")
-        print(f"Skills: ", self.skills)
         print(f"Unassigned Stat Points: {self.usp}")
         return
 
@@ -105,7 +113,7 @@ class Players:
             self.maxXP += self.level_progression()
             self.maxXP = self.maxXP
             self.lvl += 1
-            # ?
+            # Healing power
             self.maxHP += 10
             self.maxMP += 10
         return
@@ -123,7 +131,7 @@ class Players:
             return 125
         return 25
 
-    def set_attt(self) -> None:
+    def set_stats(self) -> None:
         if self.p_class == 0:
             self.Strength = random.randint(7, 11)
             self.Intellect = random.randint(12, 16)
@@ -147,23 +155,27 @@ class Players:
             self.usp = random.randint(1, 3)
         return
 
-    def get_skills(self, c_num) -> str:
-        if c_num == 0:
-            return "Fireball (2 mana; 2*intellect on 1 enemy), " \
-                   "Heal (3 mana; heal yourself for 50 HP), " \
-                   "Electrocute (3 mana; 1*intellect to all creatures), " \
-                   "Hit (0 mana; 1*strength on 1 enemmy)"
-        elif c_num == 1:
-            return "Pierce (2 energy; 2*strength on max 3 ennemies), " \
-                   "Slice (3 energy; 4*strength on one enemmy), " \
-                   "Strengthen (4 energy, augment your shield by 50 for 3 turns) " \
-                   "Hit (0 energy; 1*strength on 1 enemmy)"
-        elif c_num == 2:
-            return "still need to add in skills"
-        elif c_num == 3:
+    def get_skills(self) -> None:
+        # ['Magician', 'Warrior', 'Archer', '?']
+        self.skills['Magician'] = {
+            'Fireball': {'name': 'Fireball', 'mana': 2, 'attack': '2*intellect on 1 enemy'},
+            'Heal': {'name': 'Heal', 'mana': 3, 'attack': 'heal yourself for 50 HP'},
+            'Electrocute': {'name': 'Electrocute', 'mana': 3, 'attack': '1*intellect to all creatures'},
+            'Hit': {'name': 'Hit', 'mana': 0, 'attack': '1*strength on 1 enemy'},
+            'Special': {'name': '', 'mana': 0, 'attack': ''}}
+        self.skills['Warrior'] = {
+            'Pierce': {'name': 'Pierce', 'mana': 2, 'attack': '2*strength on max 3 enemies'},
+            'Slice': {'name': 'Slice', 'mana': 3, 'attack': '4*strength on one enemy'},
+            'Strengthen': {'name': 'Strengthen', 'mana': 4, 'attack': 'augment your shield by 50 for 3 turns'},
+            'Hit': {'name': 'Hit', 'mana': 0, 'attack': '1*strength on 1 enemy'},
+            'Special': {'name': '', 'mana': 0, 'attack': ''}}
+        self.skills['Archer'] = {}
+        """elif c_num == 3:
             return ", Watershot (5 mana, 3*intelligence on 1 creature)"
         else:
             return "?"
+        """
+        return
 
 
 """
