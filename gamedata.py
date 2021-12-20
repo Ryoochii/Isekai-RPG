@@ -50,9 +50,9 @@ class GameData:
         p.Stamina = data['Stamina']
         p.Luck = data['Luck']
         p.usp = data['usp']
-        p.skills = data['Skills']
+        p.skills = data['skills']
         p.difficulty = data['difficulty']
-        p.location = data['location']
+        p.location = data['Location']
         return
 
     @staticmethod
@@ -68,5 +68,6 @@ class GameData:
                 'Energy': p.Energy, 'Strength': p.Strength, 'Intellect': p.Intellect, 'Agility': p.Agility,
                 'Stamina': p.Stamina, 'Luck': p.Luck, 'usp': p.usp, 'skills': p.skills, 'difficulty': p.difficulty,
                 'c_names': c.c_names}
+
 
         return temp
