@@ -52,7 +52,7 @@ class GameData:
         p.usp = data['usp']
         p.skills = data['skills']
         p.difficulty = data['difficulty']
-        p.location = data['Location']
+        p.location = data['location']
         return
 
     @staticmethod
