@@ -72,7 +72,7 @@ class Questions:
         areas = ['Mountain', 'Forest', 'Dungeon', 'Plains']
         while True:
             print('Your Current location is ', self.p_location)
-            print('Where would you like to travel to next:')
+            print('Where would you like to travel to next: ')
             for each in areas:
                 if self.p_location != each:
                     print(each)

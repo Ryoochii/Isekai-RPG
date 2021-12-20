@@ -37,7 +37,7 @@ class Players:
         # Calls the attribute function to give your player stats for its class
         self.set_stats()
         # Unassigned points that allow you to boost your stats through the game
-        self.usp = 10
+        self.usp = 3
         # skills for each class
         self.skills = {}
         self.get_skills()
@@ -50,7 +50,8 @@ class Players:
         print(f"Level: {self.lvl}   XP: {int(self.XP):,}/{int(self.maxXP):,}")
         print(f"Job: {self.job[self.p_class]} Class: {self.p_class}")
         for k, v in self.skills[self.job[self.p_class]].items():
-            print(f"    Skill: {v['name']}")
+            if v['name'] != "":
+                 print(f"    Skill: {v['name']}")
         print(f"Health Power: {self.HPh}/{self.maxHP}")
         if self.p_class == 0:
             print(f"Mana Power: {self.MPh}/{self.maxMP}")
