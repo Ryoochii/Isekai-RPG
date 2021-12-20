@@ -37,7 +37,7 @@ class Players:
         # Calls the attribute function to give your player stats for its class
         self.set_stats()
         # Unassigned points that allow you to boost your stats through the game
-        self.usp = 3
+        self.usp = 0
         # skills for each class
         self.skills = {}
         self.get_skills()

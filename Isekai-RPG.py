@@ -38,7 +38,6 @@ def game(continu=0) -> None:
     if continu == 1:
         print(f"Welcome back {player1.p_name}. Here are your stats!")
     player1.display_info()
-    player1.unassigned_points()
     print("\nIt is at that moment that you realised that this is the start of your adventure.")
     game_play = True
     while game_play:
