@@ -62,8 +62,8 @@ class Questions:
             print("(1) Easy")
             print("(2) Medium")
             print("(3) Hard")
-            print("(4) Extreme")
-            user_input = input('?: ')
+            print("(4) Insane")
+            user_input = input('Input: ')
             if self.checking_answer(user_input):
                 break
         return int(user_input)
