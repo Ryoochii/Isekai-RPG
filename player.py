@@ -51,7 +51,7 @@ class Players:
         print(f"Job: {self.job[self.p_class]} Class: {self.p_class}")
         for k, v in self.skills[self.job[self.p_class]].items():
             if v['name'] != "":
-                 print(f"    Skill: {v['name']}")
+                print(f"    Skill: {v['name']}")
         print(f"Health Power: {self.HPh}/{self.maxHP}")
         if self.p_class == 0:
             print(f"Mana Power: {self.MPh}/{self.maxMP}")
