@@ -45,29 +45,33 @@ def game(continu=0) -> None:
         monster = creatures.num_cs
         questions.p_location = player1.location
         s_location = questions.location()
-        if s_location == '0':
+        if s_location == 0:
             return
-        if s_location.lower() in ['mountain', 'm']:
+        if s_location == 1:
             player1.location = 'Mountain'
             print("You have set out on your adventure.")
             print("You arrive at a beginner mountain known for it's weak monsters.")
             print(f"While traveling, you get ambushed by a group of {monster} Creatures.")
-        elif s_location.lower() in ['forest', 'f']:
+        elif s_location == 2:
             player1.location = 'Forest'
             print("You have set out on your adventure.")
             print("You arrive at a dense forest known for it's weak monsters.")
             print("In the forrest, you see a goblin encampment.")
             print(f"After watching for a moment, you manage to see a total of {monster} creatures.")
-        elif s_location.lower() in ['dungeon', 'd']:
+        elif s_location == 3:
             player1.location = 'Dungeon'
             print("You have set out on your adventure.")
             print("You arrive at a dungeon where many beginners meet up to start a new adventure.")
             print(f"While walking around in the dungeon, you find a small group of {monster} creatures.")
-        elif s_location.lower() in ['plains', 'plain', 'p']:
+        elif s_location == 4:
             player1.location = 'Plains'
             print("You have set out on your adventure.")
             print("You arrive at a wide plain where you can easily perceive monsters.")
             print(f"You perceive {monster} creatures and decide to engage in a combat.")
+        elif s_location == 5:
+            player1.location = 'Home'
+
+
         c_party = creatures.fight_party(player1.lvl)
         for k, v in c_party.items():
             print(f"Name: {v['name']}")
@@ -99,16 +103,19 @@ def game_menu() -> None:
 
 
 def options_menu() -> None:
-    user_input = questions.option_menu()
-    if user_input == '1':
-        difficulty_selection()
-    if user_input == '2':
-        print('\n'
-              'Thank you for playing our game!''\n\n'
-              'Developpers: \n'
-              'Navid Lahidji Hosseiny''\n'
-              'Insert your name'
-              '\n\n\n')
+    while True:
+        user_input = questions.option_menu()
+        if user_input == '1':
+            difficulty_selection()
+        elif user_input == '2':
+            print('\n'
+                  'Thank you for playing our game!''\n\n'
+                  'Developers: \n'
+                  'Navid Lahidji Hosseiny''\n'
+                  'Adam Smith'
+                  '\n\n\n')
+        elif user_input == '0':
+            break
     return
 
 

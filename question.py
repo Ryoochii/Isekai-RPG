@@ -21,7 +21,7 @@ class Questions:
         if user_input == "":
             print('Missing input. Please try again.\n')
         elif it_is:
-            if 0 < int(user_input) <= self.qsize:
+            if -1 < int(user_input) <= self.qsize:
                 return True
             else:
                 print('Out of range. Please try again.\n')
@@ -49,6 +49,7 @@ class Questions:
         while True:
             print('(1) Difficultly selection')
             print('(2) Credits')
+            print('(0) Main menu')
             user_input = input('Input: ')
             print('\n')
             if self.checking_answer(user_input):
@@ -68,29 +69,24 @@ class Questions:
                 break
         return int(user_input)
 
-    def location(self) -> str:
-        areas = ['Mountain', 'Forest', 'Dungeon', 'Plains']
+    def location(self) -> int:
+        self.qsize = 5
+        areas = ['Mountain', 'Forest', 'Dungeon', 'Plains', 'Home']
         while True:
             print('Your Current location is ', self.p_location)
-            print('Where would you like to travel to next: ')
+            print('Where would you like to travel to next:')
+            count = 0
             for each in areas:
                 if self.p_location != each:
-                    print(each)
-            user_input = input("?: ")
-            if user_input.lower() not in ['f', 'forest', 'm', 'mountain',
-                                          'd', 'dungeon', 'p', 'plains', 'exit']:
-                print('Incorrect Answer. Please try again')
-                print('\n\n')
-            else:
-                if user_input.lower() in ['f', 'forest']:
-                    dest = 'Forest'
-                elif user_input.lower() in ['d', 'dungeon']:
-                    dest = 'Dungeon'
-                elif user_input.lower() in ['m', 'mountain']:
-                    dest = 'Mountain'
-                elif user_input.lower() in ['p', 'plains']:
-                    dest = 'Plains'
+                    count += 1
+                    print(f'({count}) {each}')
                 else:
-                    return '0'
-        print(f'You have decided to leave {self.p_location} and travel to {dest}')
-        return user_input.lower()
+                    count += 1
+                    print(f'({count}) {each}*')
+            user_input = input("?: ")
+            if self.checking_answer(user_input):
+                if areas[int(user_input) - 1] == self.p_location:
+                    print(f'Sorry you cant choose {areas[int(user_input) - 1]} cause you are currently at that location')
+                else:
+                    break
+        return int(user_input)
