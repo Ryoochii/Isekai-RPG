@@ -30,14 +30,15 @@ def new_game() -> None:
     print("The god sent you on your way. When you wake up, you realise you are an infant, \n"
           "unable to do anything. You then remember that the god told you to say status.")
     print("(You pronounce the word status. A screen appears in front of you)")
-
+    player1.display_info()
+    
     return
 
 
 def game(continu=0) -> None:
     if continu == 1:
         print(f"Welcome back {player1.p_name}. Here are your stats!")
-    player1.display_info()
+        player1.display_info()
     print("\nIt is at that moment that you realised that this is the start of your adventure.")
     game_play = True
     while game_play:
@@ -51,23 +52,23 @@ def game(continu=0) -> None:
             player1.location = 'Mountain'
             print("You have set out on your adventure.")
             print("You arrive at a beginner mountain known for it's weak monsters.")
-            print(f"While traveling, you get ambushed by a group of {monster} Creatures.")
+            print(f"While traveling, you get ambushed by a group of {monster} kobolds.")
         elif s_location == 2:
             player1.location = 'Forest'
             print("You have set out on your adventure.")
             print("You arrive at a dense forest known for it's weak monsters.")
             print("In the forrest, you see a goblin encampment.")
-            print(f"After watching for a moment, you manage to see a total of {monster} creatures.")
+            print(f"After watching for a moment, you manage to see a total of {monster} goblins.")
         elif s_location == 3:
             player1.location = 'Dungeon'
             print("You have set out on your adventure.")
             print("You arrive at a dungeon where many beginners meet up to start a new adventure.")
-            print(f"While walking around in the dungeon, you find a small group of {monster} creatures.")
+            print(f"While walking around in the dungeon, you find a small group of {monster} zombies.")
         elif s_location == 4:
             player1.location = 'Plains'
             print("You have set out on your adventure.")
             print("You arrive at a wide plain where you can easily perceive monsters.")
-            print(f"You perceive {monster} creatures and decide to engage in a combat.")
+            print(f"You perceive {monster} slimes and decide to engage in a combat.")
         elif s_location == 5:
             player1.location = 'Home'
 

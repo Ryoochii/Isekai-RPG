@@ -32,7 +32,7 @@ class Players:
         self.Strength = 0
         self.Intellect = 0
         self.Agility = 0
-        self.Stamina = 0
+        self.Accuracy = 0
         self.Luck = 0
         # Calls the attribute function to give your player stats for its class
         self.set_stats()
@@ -60,9 +60,10 @@ class Players:
         print(f"Strength: {self.Strength}")
         print(f"Intellect: {self.Intellect}")
         print(f"Agility: {self.Agility}")
-        print(f"Stamina: {self.Stamina}")
+        print(f"Accuracy: {self.Accuracy}")
         print(f"Luck: {self.Luck}")
         print(f"Unassigned Stat Points: {self.usp}")
+        self.unassigned_points()
         return
 
     def unassigned_points(self) -> None:
@@ -100,7 +101,7 @@ class Players:
                         elif user_input.lower() == 'a':
                             self.Agility += a_input
                         elif user_input.lower() == 't':
-                            self.Stamina += a_input
+                            self.Accuracy += a_input
                         elif user_input.lower() == 'l':
                             self.Luck += a_input
                         self.usp -= a_input
@@ -137,21 +138,21 @@ class Players:
             self.Strength = random.randint(7, 11)
             self.Intellect = random.randint(12, 16)
             self.Agility = random.randint(8, 12)
-            self.Stamina = random.randint(12, 16)
+            self.Accuracy = random.randint(12, 16)
             self.Luck = random.randint(8, 12)
             self.usp = random.randint(1, 3)
         elif self.p_class == 1:
             self.Strength = random.randint(12, 16)
             self.Intellect = random.randint(7, 11)
             self.Agility = random.randint(8, 12)
-            self.Stamina = random.randint(8, 12)
+            self.Accuracy = random.randint(8, 12)
             self.Luck = random.randint(12, 16)
             self.usp = random.randint(1, 3)
         elif self.p_class == 2:
             self.Strength = random.randint(8, 12)
             self.Intellect = random.randint(8, 12)
             self.Agility = random.randint(12, 16)
-            self.Stamina = random.randint(7, 11)
+            self.Accuracy = random.randint(7, 11)
             self.Luck = random.randint(12, 16)
             self.usp = random.randint(1, 3)
         return

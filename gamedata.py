@@ -47,7 +47,7 @@ class GameData:
         p.Strength = data['Strength']
         p.Intellect = data['Intellect']
         p.Agility = data['Agility']
-        p.Stamina = data['Stamina']
+        p.Accuracy = data['Accuracy']
         p.Luck = data['Luck']
         p.usp = data['usp']
         p.skills = data['skills']
@@ -66,7 +66,7 @@ class GameData:
         temp = {'p_name': p.p_name, 'lvl': p.lvl, 'XP': p.XP, 'maxXP': p.maxXP, 'job': p.job, 'p_class': p.p_class,
                 'HPh': p.HPh, 'maxHP': p.maxHP, 'MPh': p.MPh, 'maxMP': p.maxMP, 'ENh': p.ENh, 'maxEN': p.maxEN,
                 'Energy': p.Energy, 'Strength': p.Strength, 'Intellect': p.Intellect, 'Agility': p.Agility,
-                'Stamina': p.Stamina, 'Luck': p.Luck, 'usp': p.usp, 'skills': p.skills, 'difficulty': p.difficulty,
+                'Accuracy': p.Accuracy, 'Luck': p.Luck, 'usp': p.usp, 'skills': p.skills, 'difficulty': p.difficulty,
                 'c_names': c.c_names}
 
 
