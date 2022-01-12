@@ -1,5 +1,5 @@
 import random as rnd
-
+import time
 
 class Players:
     """This class holds all the player information."""
@@ -63,7 +63,6 @@ class Players:
         print(f"Accuracy: {self.Accuracy}")
         print(f"Luck: {self.Luck}")
         print(f"Unassigned Stat Points: {self.usp}")
-        self.unassigned_points
         return
 
     def unassigned_points(self) -> None:
@@ -108,20 +107,21 @@ class Players:
                         elif user_input.lower() == 'l':
                             self.Luck += a_input
                         self.usp -= a_input
-                    wrong_answer=True
-                    print(f'You have {self.usp} points left to spend')
-                    while wrong_answer==True:
-                        user_input = str(input('Would you like to spend more points (Yes, No)? '))
-                        if user_input.lower() not in ['yes', 'no', 'n', 'y']:
-                            print('Incorrect answer. Please try again')
-                            wrong_answer=True
-                        elif user_input.lower() in ['no', 'n']:
-                            print('No Points Spent')
-                            more=False
-                            wrong_answer=False
-                            break
-                        else:
-                            wrong_answer=False
+                    if self.usp>0:
+                        wrong_answer=True
+                        print(f'You have {self.usp} points left to spend')
+                        while wrong_answer==True:
+                            user_input = str(input('Would you like to spend more points (Yes, No)? '))
+                            if user_input.lower() not in ['yes', 'no', 'n', 'y']:
+                                print('Incorrect answer. Please try again')
+                                wrong_answer=True
+                            elif user_input.lower() in ['no', 'n']:
+                                print('No Points Spent')
+                                more=False
+                                wrong_answer=False
+                                break
+                            else:
+                                wrong_answer=False
         return
 
     def level_up(self) -> None:
@@ -195,7 +195,33 @@ class Players:
             return "?"
         """
         return
-
+    
+    def rest(self):
+        self.HP=self.maxHP
+        self.MP=self.maxMP
+        #self.ENh=self.maxENh
+        print("You are sleeping")
+        time.sleep(5)
+        return
+    
+    def rank(self):
+        if self.lvl>11:
+            guild_id="F"
+        elif 10>self.lvl>21:
+            guild_id="E"
+        elif 20>self.lvl>31:
+            guild_id="D"
+        elif 30>self.lvl>41:
+            guild_id="E"
+        elif 40>self.lvl>51:
+            guild_id="D"
+        elif 50>self.lvl>61:
+            guild_id="E"
+        elif 60>self.lvl>71:
+            guild_id="D"
+        elif 70>self.lvl:
+            guild_id="SS"
+        return guild_id
 
 """
 p = Players()

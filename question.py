@@ -70,23 +70,60 @@ class Questions:
         return int(user_input)
 
     def location(self) -> int:
-        self.qsize = 5
-        areas = ['Mountain', 'Forest', 'Dungeon', 'Plains', 'Town']
-        while True:
-            print('Your Current location is ', self.p_location)
-            print('Where would you like to travel to next:')
-            count = 0
-            for each in areas:
-                if self.p_location != each:
-                    count += 1
-                    print(f'({count}) {each}')
-                else:
-                    count += 1
-                    print(f'({count}) {each}*')
-            user_input = input("?: ")
-            if self.checking_answer(user_input):
-                if areas[int(user_input) - 1] == self.p_location:
-                    print(f'Sorry you cant choose {areas[int(user_input) - 1]} cause you are currently at that location')
-                else:
-                    break
-        return int(user_input)
+        main_place=True
+        while main_place==True:
+            if self.p_location=='Campaign' or self.p_location=='Plains' or self.p_location=='Forest' or self.p_location=='Dungeon' or self.p_location=='Mountain':
+                self.qsize = 5
+                areas = ['Mountain', 'Forest', 'Dungeon', 'Plains', 'Town']
+                main_location=1
+                while True:
+                    print('Your Current location is ', self.p_location)
+                    print('Where would you like to travel to next:')
+                    count = 0
+                    for each in areas:
+                        if self.p_location != each:
+                            count += 1
+                            print(f'({count}) {each}')
+                        else:
+                            count += 1
+                            print(f'({count}) {each}*')
+                    user_input = input("Input: ")
+                    if self.checking_answer(user_input):
+                        if user_input == 5:
+                            main_location=2
+                            main_place=True
+                            self.p_location='Town'
+                            break
+                        if areas[int(user_input) - 1] == self.p_location:
+                            print(f'Sorry you cannot choose {areas[int(user_input) - 1]} cause you are currently at that location')
+                        else:
+                            main_place=False
+                            break
+            elif self.p_location=='Town' or self.p_location=='Home' or self.p_location=='Shop' or self.p_location=='Guild' or self.p_location=='Arena':
+                self.qsize = 5
+                main_location=2
+                areas = ['Home', 'Shop', 'Guild', 'Arena', 'Campaign']
+                while True:
+                    print('Your Current location is ', self.p_location)
+                    print('Where would you like to travel to next:')
+                    count = 0
+                    for each in areas:
+                        if self.p_location != each:
+                            count += 1
+                            print(f'({count}) {each}')
+                        else:
+                            count += 1
+                            print(f'({count}) {each}*')
+                    user_input = input("Input: ")
+                    if self.checking_answer(user_input):
+                        if int(user_input) == 5:
+                            main_location=1
+                            main_place=True
+                            self.p_location='Campaign'
+                            break
+                        if areas[int(user_input) - 1] == self.p_location:
+                            print(f'Sorry you cannot choose {areas[int(user_input) - 1]} cause you are currently at that location')
+                        else:
+                            main_place=False
+                            break
+        return int(user_input), main_location
