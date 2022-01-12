@@ -70,7 +70,7 @@ def game(continu=0) -> None:
             print("You arrive at a wide plain where you can easily perceive monsters.")
             print(f"You perceive {monster} slimes and decide to engage in a combat.")
         elif s_location == 5:
-            player1.location = 'Home'
+            player1.location = 'Town'
 
 
         c_party = creatures.fight_party(player1.lvl)

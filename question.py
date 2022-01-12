@@ -8,7 +8,7 @@ class Questions:
     def __init__(self):
         # qsize is how many choices you have for your question
         self.qsize = 0
-        self.p_location = 'Home'
+        self.p_location = 'Town'
 
     def checking_answer(self, user_input) -> bool:
         """This function is to check to make sure that the user
@@ -71,7 +71,7 @@ class Questions:
 
     def location(self) -> int:
         self.qsize = 5
-        areas = ['Mountain', 'Forest', 'Dungeon', 'Plains', 'Home']
+        areas = ['Mountain', 'Forest', 'Dungeon', 'Plains', 'Town']
         while True:
             print('Your Current location is ', self.p_location)
             print('Where would you like to travel to next:')

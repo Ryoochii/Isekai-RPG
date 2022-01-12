@@ -1,4 +1,4 @@
-import random
+import random as rnd
 
 
 class Players:
@@ -17,7 +17,7 @@ class Players:
         # Magician, Warrior, Archer
         self.job = ['Magician', 'Warrior', 'Archer', '?']
         # classes
-        self.p_class = random.randint(0, 0)
+        self.p_class = rnd.randint(0, 0)
         # Health
         self.HPh = 10
         self.maxHP = 10
@@ -34,17 +34,17 @@ class Players:
         self.Agility = 0
         self.Accuracy = 0
         self.Luck = 0
-        # Calls the attribute function to give your player stats for its class
-        self.set_stats()
         # Unassigned points that allow you to boost your stats through the game
         self.usp = 0
+        # Calls the attribute function to give your player stats for its class
+        self.set_stats()
         # skills for each class
         self.skills = {}
         self.get_skills()
         # difficulty
         self.difficulty = 0
         # players current location
-        self.location = 'Home'
+        self.location = 'Town'
 
     def display_info(self) -> None:
         print(f"Level: {self.lvl}   XP: {int(self.XP):,}/{int(self.maxXP):,}")
@@ -63,7 +63,7 @@ class Players:
         print(f"Accuracy: {self.Accuracy}")
         print(f"Luck: {self.Luck}")
         print(f"Unassigned Stat Points: {self.usp}")
-        self.unassigned_points()
+        self.unassigned_points
         return
 
     def unassigned_points(self) -> None:
@@ -76,7 +76,8 @@ class Players:
                 print('No Points Spent')
                 break
             else:
-                while self.usp > 0:
+                more=True
+                while self.usp > 0 and more==True:
                     print(f'You have {self.usp} Points to use.')
                     print('Which category do you want to assign your points?')
                     print('(S)trength')
@@ -89,9 +90,11 @@ class Players:
                         print('Incorrect answer. Please try again')
                     else:
                         while True:
-                            a_input = int(input('How many points to assign? '))
+                            a_input = int(input('How many points do you want to assign? '))
                             if a_input > self.usp:
                                 print('Sorry you can not spend more points than you currently have. Please try again.')
+                            elif a_input<0:
+                                print('Sorry you cannot spend less than 1 point.')
                             else:
                                 break
                         if user_input.lower() == 's':
@@ -105,6 +108,20 @@ class Players:
                         elif user_input.lower() == 'l':
                             self.Luck += a_input
                         self.usp -= a_input
+                    wrong_answer=True
+                    print(f'You have {self.usp} points left to spend')
+                    while wrong_answer==True:
+                        user_input = str(input('Would you like to spend more points (Yes, No)? '))
+                        if user_input.lower() not in ['yes', 'no', 'n', 'y']:
+                            print('Incorrect answer. Please try again')
+                            wrong_answer=True
+                        elif user_input.lower() in ['no', 'n']:
+                            print('No Points Spent')
+                            more=False
+                            wrong_answer=False
+                            break
+                        else:
+                            wrong_answer=False
         return
 
     def level_up(self) -> None:
@@ -135,26 +152,26 @@ class Players:
 
     def set_stats(self) -> None:
         if self.p_class == 0:
-            self.Strength = random.randint(7, 11)
-            self.Intellect = random.randint(12, 16)
-            self.Agility = random.randint(8, 12)
-            self.Accuracy = random.randint(12, 16)
-            self.Luck = random.randint(8, 12)
-            self.usp = random.randint(1, 3)
+            self.Strength = rnd.randint(7, 11)
+            self.Intellect = rnd.randint(12, 16)
+            self.Agility = rnd.randint(8, 12)
+            self.Accuracy = rnd.randint(12, 16)
+            self.Luck = rnd.randint(8, 12)
+            self.usp = rnd.randint(1, 3)
         elif self.p_class == 1:
-            self.Strength = random.randint(12, 16)
-            self.Intellect = random.randint(7, 11)
-            self.Agility = random.randint(8, 12)
-            self.Accuracy = random.randint(8, 12)
-            self.Luck = random.randint(12, 16)
-            self.usp = random.randint(1, 3)
+            self.Strength = rnd.randint(12, 16)
+            self.Intellect = rnd.randint(7, 11)
+            self.Agility = rnd.randint(8, 12)
+            self.Accuracy = rnd.randint(8, 12)
+            self.Luck = rnd.randint(12, 16)
+            self.usp = rnd.randint(1, 3)
         elif self.p_class == 2:
-            self.Strength = random.randint(8, 12)
-            self.Intellect = random.randint(8, 12)
-            self.Agility = random.randint(12, 16)
-            self.Accuracy = random.randint(7, 11)
-            self.Luck = random.randint(12, 16)
-            self.usp = random.randint(1, 3)
+            self.Strength = rnd.randint(8, 12)
+            self.Intellect = rnd.randint(8, 12)
+            self.Agility = rnd.randint(12, 16)
+            self.Accuracy = rnd.randint(7, 11)
+            self.Luck = rnd.randint(12, 16)
+            self.usp = rnd.randint(1, 3)
         return
 
     def get_skills(self) -> None:
