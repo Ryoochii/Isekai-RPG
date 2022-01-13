@@ -205,21 +205,21 @@ class Players:
         return
     
     def rank(self):
-        if self.lvl>11:
+        if self.lvl<11:
             guild_id="F"
-        elif 10>self.lvl>21:
+        elif 10<self.lvl<21:
             guild_id="E"
-        elif 20>self.lvl>31:
+        elif 20<self.lvl<31:
             guild_id="D"
-        elif 30>self.lvl>41:
+        elif 30<self.lvl<41:
             guild_id="E"
-        elif 40>self.lvl>51:
+        elif 40<self.lvl<51:
             guild_id="D"
-        elif 50>self.lvl>61:
+        elif 50<self.lvl<61:
             guild_id="E"
-        elif 60>self.lvl>71:
+        elif 60<self.lvl<71:
             guild_id="D"
-        elif 70>self.lvl:
+        elif 70<self.lvl:
             guild_id="SS"
         return guild_id
 

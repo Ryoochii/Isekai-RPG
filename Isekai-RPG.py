@@ -94,6 +94,7 @@ def game(continu=0) -> None:
                 print("After a good meal and a good rest, you are back full of energy.")
             elif s_location == 2:
                 stay=1
+                question=1
                 player1.location = 'Shop'
                 print("You go into a small shop.")
                 print("Welcome, what can I do for you?")
@@ -107,14 +108,17 @@ def game(continu=0) -> None:
                     else:
                         print("What would you like to buy?")
                         #Need to do a shop program or file that checks what items are left in stock and everything.
-                    print("Would you like to do something else?")
-                    answer=str(input("Yes or No: "))
-                    if answer.lower() not in ['yes', 'no', 'n', 'y']:
-                        print('Incorrect answer. Please try again')
-                    elif answer.lower() in ['no', 'n']:
-                        stay=0
-                    else:
-                        print("What else can I do for you?")
+                    while question==1:
+                        print("Would you like to do something else?")
+                        answer=str(input("Yes or No: "))
+                        if answer.lower() not in ['yes', 'no', 'n', 'y']:
+                            print('Incorrect answer. Please try again')
+                        elif answer.lower() in ['no', 'n']:
+                            stay=0
+                            question=0
+                        else:
+                            print("What else can I do for you?")
+                            question=0
                 print("Goodbye and be careful.")
             elif s_location == 3:
                 player1.location = 'Guild'
