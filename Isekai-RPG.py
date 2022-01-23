@@ -94,11 +94,11 @@ def game(continu=0) -> None:
                 print("After a good meal and a good rest, you are back full of energy.")
             elif s_location == 2:
                 stay=1
-                question=1
                 player1.location = 'Shop'
                 print("You go into a small shop.")
                 print("Welcome, what can I do for you?")
                 while stay==1:
+                    question=1
                     action=str(input("Would you like to sell or buy (Sell or Buy)? "))
                     if action.lower() not in ['sell', 's', 'buy', 'b']:
                         print('Incorrect answer. Please try again')
