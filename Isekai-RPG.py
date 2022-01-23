@@ -86,12 +86,23 @@ def game(continu=0) -> None:
                 game_play=False
                 return
             if s_location == 1:
+                stay=1
                 player1.location = 'Home'
                 print("You go home.")
-                print("You arrive and your family has prepared a dinner for you.")
-                print("You eat and head to your bed.")
-                player1.rest()
-                print("After a good meal and a good rest, you are back full of energy.")
+                while stay==1:
+                    action=str(input('Do you want to rest or do you want to rearrange your inventory and chest? '))
+                    if action.lower() not in ['rest', 'r', 'inventory', 'i']:
+                        print('Incorrect answer. Please try again')
+                    elif action.lower() in ['inventory', 'i']:
+                        print("Please rearrange your inventory.")
+                        stay=0
+                        #Need to have your inventory and chest where you can store things
+                    else:
+                        print("You arrive and your family has prepared a dinner for you.")
+                        print("You eat and head to your bed.")
+                        player1.rest()
+                        print("After a good meal and a good rest, you are back full of energy.")
+                        stay=0
             elif s_location == 2:
                 stay=1
                 player1.location = 'Shop'
