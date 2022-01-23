@@ -1,7 +1,6 @@
 import json
 from os.path import exists as file_exists
 
-
 class GameData:
     """ This class will offer loading and saving of game data"""
     def __init__(self):

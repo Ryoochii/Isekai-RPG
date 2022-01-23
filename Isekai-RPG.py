@@ -111,15 +111,19 @@ def game(continu=0) -> None:
                 print("Welcome, what can I do for you?")
                 while stay==1:
                     question=1
-                    action=str(input("Would you like to sell or buy (Sell or Buy)? "))
-                    if action.lower() not in ['sell', 's', 'buy', 'b']:
-                        print('Incorrect answer. Please try again')
-                    elif action.lower() in ['sell', 's']:
-                        print("What do you want to sell?")
-                        #Need to have your inventory with what you can sell and the prices
-                    else:
-                        print("What would you like to buy?")
-                        #Need to do a shop program or file that checks what items are left in stock and everything.
+                    problem=1
+                    while problem==1:
+                        action=str(input("Would you like to sell or buy (Sell or Buy)? "))
+                        if action.lower() not in ['sell', 's', 'buy', 'b']:
+                            print('Incorrect answer. Please try again')
+                        elif action.lower() in ['sell', 's']:
+                            print("What do you want to sell?")
+                            #Need to have your inventory with what you can sell and the prices
+                            problem=0
+                        else:
+                            print("What would you like to buy?")
+                            problem=0
+                            #Need to do a shop program or file that checks what items are left in stock and everything.
                     while question==1:
                         print("Would you like to do something else?")
                         answer=str(input("Yes or No: "))

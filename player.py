@@ -44,7 +44,8 @@ class Players:
         # difficulty
         self.difficulty = 0
         # players current location
-        self.location = 'Town'
+        self.main_location = 2
+        self.location = 'Home'
 
     def display_info(self) -> None:
         print(f"Level: {self.lvl}   XP: {int(self.XP):,}/{int(self.maxXP):,}")
