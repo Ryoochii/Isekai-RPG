@@ -52,12 +52,13 @@ class GameData:
         p.usp = data['usp']
         p.skills = data['skills']
         p.difficulty = data['difficulty']
-        p.location = data['location']
+        p.main_location = data['main_location']
+        p.s_location = data['location']
         return
 
     @staticmethod
     def set_creature_data(c, data) -> None:
-        c.nums_cs = data['nums_cs']
+        #c.nums_cs = data['nums_cs']
         c.c_names = data['c_names']
         return
 
@@ -67,7 +68,7 @@ class GameData:
                 'HPh': p.HPh, 'maxHP': p.maxHP, 'MPh': p.MPh, 'maxMP': p.maxMP, 'ENh': p.ENh, 'maxEN': p.maxEN,
                 'Energy': p.Energy, 'Strength': p.Strength, 'Intellect': p.Intellect, 'Agility': p.Agility,
                 'Accuracy': p.Accuracy, 'Luck': p.Luck, 'usp': p.usp, 'skills': p.skills, 'difficulty': p.difficulty,
-                'c_names': c.c_names}
+                'main_location': p.main_location, 'location': p.location, 'c_names': c.c_names}
 
 
         return temp

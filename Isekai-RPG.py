@@ -98,6 +98,7 @@ def game(continu=0) -> None:
                         stay=0
                         #Need to have your inventory and chest where you can store things
                     else:
+                        gamedata.set_save_data(player1, creatures)
                         print("You arrive and your family has prepared a dinner for you.")
                         print("You eat and head to your bed.")
                         player1.rest()
