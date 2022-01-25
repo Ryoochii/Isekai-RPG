@@ -1,5 +1,15 @@
 import json
 from os.path import exists as file_exists
+import time
+import sys
+from player import Players
+
+player1=Players()
+def print_speed(str):
+    for letter in str:
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(player1.text)
 
 class GameData:
     """ This class will offer loading and saving of game data"""
@@ -13,16 +23,16 @@ class GameData:
                 user_data = json.load(user_data_file)
                 self.set_player_data(player_data, user_data)
                 self.set_creature_data(creatures, user_data)
-                print('Saved data has been loaded successfully!\n')
+                print_speed('Saved data has been loaded successfully!\n')
                 return True
         else:  # don't need to initialize values -- already initialized when class created
-            print('No saved data found...\n')
-            print('Starting a fresh game...\n')
+            print_speed('No saved data found...\n')
+            print_speed('Starting a fresh game...\n')
             return False
 
     def save_game(self, player_data, creatures) -> None:
         if not self.file_exists:
-            print("No previous save! Creating a new save...\n")
+            print_speed("No previous save! Creating a new save...\n")
         save_data = self.set_save_data(player_data, creatures)
         with open(self.file, 'w') as user_data_file:
             json.dump(save_data, user_data_file)

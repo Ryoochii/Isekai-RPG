@@ -1,5 +1,12 @@
 import random as rnd
 import time
+import sys
+
+def print_speed(str):
+    for letter in str:
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(Players.text)
 
 class Players:
     """This class holds all the player information."""
@@ -46,55 +53,56 @@ class Players:
         # players current location
         self.main_location = 2
         self.location = 'Home'
+        self.text=0.1
 
     def display_info(self) -> None:
-        print(f"Level: {self.lvl}   XP: {int(self.XP):,}/{int(self.maxXP):,}")
-        print(f"Job: {self.job[self.p_class]} Class: {self.p_class}")
+        print_speed(f"Level: {self.lvl}   XP: {int(self.XP):,}/{int(self.maxXP):,}")
+        print_speed(f"Job: {self.job[self.p_class]} Class: {self.p_class}")
         for k, v in self.skills[self.job[self.p_class]].items():
             if v['name'] != "":
-                print(f"    Skill: {v['name']}")
-        print(f"Health Power: {self.HPh}/{self.maxHP}")
+                print_speed(f"    Skill: {v['name']}")
+        print_speed(f"Health Power: {self.HPh}/{self.maxHP}")
         if self.p_class == 0:
-            print(f"Mana Power: {self.MPh}/{self.maxMP}")
+            print_speed(f"Mana Power: {self.MPh}/{self.maxMP}")
         elif self.p_class in [1, 2]:
-            print(f"Energy: {self.ENh}/{self.maxEN}")
-        print(f"Strength: {self.Strength}")
-        print(f"Intellect: {self.Intellect}")
-        print(f"Agility: {self.Agility}")
-        print(f"Accuracy: {self.Accuracy}")
-        print(f"Luck: {self.Luck}")
-        print(f"Unassigned Stat Points: {self.usp}")
+            print_speed(f"Energy: {self.ENh}/{self.maxEN}")
+        print_speed(f"Strength: {self.Strength}")
+        print_speed(f"Intellect: {self.Intellect}")
+        print_speed(f"Agility: {self.Agility}")
+        print_speed(f"Accuracy: {self.Accuracy}")
+        print_speed(f"Luck: {self.Luck}")
+        print_speed(f"Unassigned Stat Points: {self.usp}")
         return
 
     def unassigned_points(self) -> None:
         while self.usp > 0:
-            print(f'You have {self.usp} points to spend')
+            print_speed(f'You have {self.usp} points to spend')
             user_input = str(input('Would you like to spend your points (Yes, No)? '))
             if user_input.lower() not in ['yes', 'no', 'n', 'y']:
-                print('Incorrect answer. Please try again')
+                print_speed('Incorrect answer. Please try again')
             elif user_input.lower() in ['no', 'n']:
-                print('No Points Spent')
+                print_speed('No Points Spent')
                 break
             else:
                 more=True
                 while self.usp > 0 and more==True:
-                    print(f'You have {self.usp} Points to use.')
-                    print('Which category do you want to assign your points?')
-                    print('(S)trength')
-                    print('(I)ntellect')
-                    print('(A)gility')
-                    print('S(t)amina')
-                    print('(L)uck')
+                    print_speed(f'You have {self.usp} Points to use.')
+                    print_speed('Which category do you want to assign your points?')
+                    print_speed('(S)trength')
+                    print_speed('(I)ntellect')
+                    print_speed('(A)gility')
+                    print_speed('S(t)amina')
+                    print_speed('(L)uck')
                     user_input = str(input('Insert: '))
                     if user_input.lower() not in ['s', 'i', 'a', 't', 'l']:
-                        print('Incorrect answer. Please try again')
+                        print_speed('Incorrect answer. Please try again')
                     else:
                         while True:
                             a_input = int(input('How many points do you want to assign? '))
                             if a_input > self.usp:
-                                print('Sorry you can not spend more points than you currently have. Please try again.')
+                                print_speed('Sorry you can not spend more points than you currently have. Please try again.')
                             elif a_input<0:
-                                print('Sorry you cannot spend less than 1 point.')
+                                print_speed('Sorry you cannot spend less than 1 point.')
                             else:
                                 break
                         if user_input.lower() == 's':
@@ -110,14 +118,14 @@ class Players:
                         self.usp -= a_input
                     if self.usp>0:
                         wrong_answer=True
-                        print(f'You have {self.usp} points left to spend')
+                        print_speed(f'You have {self.usp} points left to spend')
                         while wrong_answer==True:
                             user_input = str(input('Would you like to spend more points (Yes, No)? '))
                             if user_input.lower() not in ['yes', 'no', 'n', 'y']:
-                                print('Incorrect answer. Please try again')
+                                print_speed('Incorrect answer. Please try again')
                                 wrong_answer=True
                             elif user_input.lower() in ['no', 'n']:
-                                print('No Points Spent')
+                                print_speed('No Points Spent')
                                 more=False
                                 wrong_answer=False
                                 break
@@ -201,8 +209,7 @@ class Players:
         self.HP=self.maxHP
         self.MP=self.maxMP
         #self.ENh=self.maxENh
-        print("You are sleeping")
-        time.sleep(5)
+        print_speed("You are sleeping")
         return
     
     def rank(self):
