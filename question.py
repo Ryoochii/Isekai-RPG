@@ -11,6 +11,7 @@ def print_speed(str):
         sys.stdout.write(letter)
         sys.stdout.flush()
         time.sleep(player1.text)
+    sys.stdout.write('\n')
 
 class Questions:
     def __init__(self):
@@ -107,7 +108,7 @@ class Questions:
                 areas = ['Mountain', 'Forest', 'Dungeon', 'Plains', 'Town']
                 main_location=1
                 while True:
-                    print_speed('Your Current location is ', self.p_location)
+                    print_speed(f'Your Current location is {self.p_location}')
                     print_speed('Where would you like to travel to next:')
                     count = 0
                     for each in areas:
@@ -134,7 +135,7 @@ class Questions:
                 main_location=2
                 areas = ['Home', 'Shop', 'Guild', 'Arena', 'Campaign']
                 while True:
-                    print_speed('Your Current location is ', self.p_location)
+                    print_speed(f'Your Current location is {self.p_location}')
                     print_speed('Where would you like to travel to next:')
                     count = 0
                     for each in areas:

@@ -10,6 +10,7 @@ def print_speed(str):
         sys.stdout.write(letter)
         sys.stdout.flush()
         time.sleep(player1.text)
+    sys.stdout.write('\n')
 
 class GameData:
     """ This class will offer loading and saving of game data"""

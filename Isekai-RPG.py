@@ -32,6 +32,7 @@ def print_speed(str):
         sys.stdout.write(letter)
         sys.stdout.flush()
         time.sleep(player1.text)
+    sys.stdout.write('\n')
 
 def new_game() -> None:
     player1.p_name = str(input("Welcome, what might your name be: "))
@@ -54,7 +55,7 @@ def game(continu=0) -> None:
         player1.display_info()
         player1.unassigned_points()
         #We need to add guild id on the txt file
-    print_speed("\nIt is at that moment that you realised that this is the start of your adventure.")
+    print_speed("It is at that moment that you realised that this is the start of your adventure.")
     game_play = True
     while game_play:
         creatures.num_c()
