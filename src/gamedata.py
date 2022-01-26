@@ -15,7 +15,7 @@ def print_speed(str):
 class GameData:
     """ This class will offer loading and saving of game data"""
     def __init__(self):
-        self.file = 'RPGsave.txt'
+        self.file = 'database/RPGsave.txt'
         self.file_exists = bool(file_exists(self.file))
 
     def load_game(self, player_data, creatures) -> bool:

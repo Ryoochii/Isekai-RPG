@@ -2,12 +2,6 @@ import random as rnd
 import time
 import sys
 
-def print_speed(str):
-    for letter in str:
-        sys.stdout.write(letter)
-        sys.stdout.flush()
-        time.sleep(player1.text)
-    sys.stdout.write('\n')
 
 class Players:
     """This class holds all the player information."""
@@ -85,8 +79,8 @@ class Players:
                 print_speed('No Points Spent')
                 break
             else:
-                more=True
-                while self.usp > 0 and more==True:
+                more = True
+                while self.usp > 0 and more == True:
                     print_speed(f'You have {self.usp} Points to use.')
                     print_speed('Which category do you want to assign your points?')
                     print_speed('(S)trength')
@@ -101,8 +95,9 @@ class Players:
                         while True:
                             a_input = int(input('How many points do you want to assign? '))
                             if a_input > self.usp:
-                                print_speed('Sorry you can not spend more points than you currently have. Please try again.')
-                            elif a_input<0:
+                                print_speed(
+                                    'Sorry you can not spend more points than you currently have. Please try again.')
+                            elif a_input < 0:
                                 print_speed('Sorry you cannot spend less than 1 point.')
                             else:
                                 break
@@ -117,21 +112,21 @@ class Players:
                         elif user_input.lower() == 'l':
                             self.Luck += a_input
                         self.usp -= a_input
-                    if self.usp>0:
-                        wrong_answer=True
+                    if self.usp > 0:
+                        wrong_answer = True
                         print_speed(f'You have {self.usp} points left to spend')
-                        while wrong_answer==True:
+                        while wrong_answer == True:
                             user_input = str(input('Would you like to spend more points (Yes, No)? '))
                             if user_input.lower() not in ['yes', 'no', 'n', 'y']:
                                 print_speed('Incorrect answer. Please try again')
-                                wrong_answer=True
+                                wrong_answer = True
                             elif user_input.lower() in ['no', 'n']:
                                 print_speed('No Points Spent')
-                                more=False
-                                wrong_answer=False
+                                more = False
+                                wrong_answer = False
                                 break
                             else:
-                                wrong_answer=False
+                                wrong_answer = False
         return
 
     def level_up(self) -> None:
@@ -205,39 +200,40 @@ class Players:
             return "?"
         """
         return
-    
+
     def rest(self):
-        self.HP=self.maxHP
-        self.MP=self.maxMP
-        #self.ENh=self.maxENh
+        self.HP = self.maxHP
+        self.MP = self.maxMP
+        # self.ENh=self.maxENh
         print_speed("You are sleeping")
         return
-    
-    def rank(self):
-        if self.lvl<11:
-            guild_id="F"
-        elif 10<self.lvl<21:
-            guild_id="E"
-        elif 20<self.lvl<31:
-            guild_id="D"
-        elif 30<self.lvl<41:
-            guild_id="E"
-        elif 40<self.lvl<51:
-            guild_id="D"
-        elif 50<self.lvl<61:
-            guild_id="E"
-        elif 60<self.lvl<71:
-            guild_id="D"
-        elif 70<self.lvl:
-            guild_id="SS"
+
+    def rank(self) -> str:
+        if self.lvl < 11:
+            guild_id = "F"
+        elif 10 < self.lvl < 21:
+            guild_id = "E"
+        elif 20 < self.lvl < 31:
+            guild_id = "D"
+        elif 30 < self.lvl < 41:
+            guild_id = "E"
+        elif 40 < self.lvl < 51:
+            guild_id = "D"
+        elif 50 < self.lvl < 61:
+            guild_id = "E"
+        elif 60 < self.lvl < 71:
+            guild_id = "D"
+        elif 70 < self.lvl:
+            guild_id = "SS"
         return guild_id
 
-"""
-p = Players()
-p.display_info()
-p.Xp = 25
-p.level_up()
-p.display_info()
-"""
 
-player1=Players()
+p = Players()
+
+
+def print_speed(input_str):
+    for letter in input_str:
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(p.text)
+    print()
