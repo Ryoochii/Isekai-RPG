@@ -2,11 +2,7 @@ import random as rnd
 import time
 import sys
 
-def print_speed(str):
-    for letter in str:
-        sys.stdout.write(letter)
-        sys.stdout.flush()
-        time.sleep(Players.text)
+
 
 class Players:
     """This class holds all the player information."""
@@ -53,7 +49,7 @@ class Players:
         # players current location
         self.main_location = 2
         self.location = 'Home'
-        self.text=0.1
+        self.text = 0.05
 
     def display_info(self) -> None:
         print_speed(f"Level: {self.lvl}   XP: {int(self.XP):,}/{int(self.maxXP):,}")
@@ -238,3 +234,10 @@ p.Xp = 25
 p.level_up()
 p.display_info()
 """
+
+player1=Players
+def print_speed(str):
+    for letter in str:
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(Players.text)

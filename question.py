@@ -88,9 +88,9 @@ class Questions:
             print("(4) Insanely fast")
             user_input = input('Input: ')
             if int(user_input)==1:
-                text_speed=0.2
+                text_speed=0.15
             elif int(user_input)==2:
-                text_speed=0.1
+                text_speed=0.05
             elif int(user_input)==3:
                 text_speed=0.01
             elif int(user_input)==4:
