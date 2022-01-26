@@ -3,15 +3,17 @@ import sys
 import time
 from player import Players
 
-player1=Players()
+player1 = Players()
 num_format = re.compile(r'^-?[0-9][0-9]*$')
 
-def print_speed(str):
-    for letter in str:
+
+def print_speed(input_str):
+    for letter in input_str:
         sys.stdout.write(letter)
         sys.stdout.flush()
         time.sleep(player1.text)
     sys.stdout.write('\n')
+
 
 class Questions:
     def __init__(self):
@@ -69,7 +71,7 @@ class Questions:
     def difficulty_s(self) -> int:
         self.qsize = 4
         while True:
-            print_speed("What difficulty will you chose?")
+            print_speed("What difficulty will you chose?\n")
             print("(1) Easy")
             print("(2) Medium")
             print("(3) Hard")
@@ -78,7 +80,7 @@ class Questions:
             if self.checking_answer(user_input):
                 break
         return int(user_input)
-    
+
     def text_speed(self) -> int:
         self.qsize = 4
         while True:
@@ -88,25 +90,25 @@ class Questions:
             print("(3) Fast")
             print("(4) Insanely fast")
             user_input = input('Input: ')
-            if int(user_input)==1:
-                text_speed=0.15
-            elif int(user_input)==2:
-                text_speed=0.05
-            elif int(user_input)==3:
-                text_speed=0.01
-            elif int(user_input)==4:
-                text_speed=0.001
+            if int(user_input) == 1:
+                text_speed = 0.15
+            elif int(user_input) == 2:
+                text_speed = 0.05
+            elif int(user_input) == 3:
+                text_speed = 0.01
+            elif int(user_input) == 4:
+                text_speed = 0.001
             if self.checking_answer(user_input):
                 break
         return text_speed
 
-    def location(self) -> int:
-        main_place=True
-        while main_place==True:
-            if self.p_location=='Campaign' or self.p_location=='Plains' or self.p_location=='Forest' or self.p_location=='Dungeon' or self.p_location=='Mountain':
+    def location(self) -> tuple[int, int]:
+        main_place = True
+        while main_place:
+            if self.p_location in ['Campaign', 'Plains', 'Forest', 'Dungeon', 'Mountain']:
                 self.qsize = 5
                 areas = ['Mountain', 'Forest', 'Dungeon', 'Plains', 'Town']
-                main_location=1
+                main_location = 1
                 while True:
                     print_speed(f'Your Current location is {self.p_location}')
                     print_speed('Where would you like to travel to next:')
@@ -121,18 +123,18 @@ class Questions:
                     user_input = input("Input: ")
                     if self.checking_answer(user_input):
                         if user_input == 5:
-                            main_location=2
-                            main_place=True
-                            self.p_location='Town'
+                            main_location = 2
+                            main_place = True
+                            self.p_location = 'Town'
                             break
                         if areas[int(user_input) - 1] == self.p_location:
                             print_speed(f'Sorry you cannot choose {areas[int(user_input) - 1]} cause you are currently at that location')
                         else:
-                            main_place=False
+                            main_place = False
                             break
-            elif self.p_location=='Town' or self.p_location=='Home' or self.p_location=='Shop' or self.p_location=='Guild' or self.p_location=='Arena':
+            elif self.p_location in ['Town', 'Home', 'Shop', 'Guild', 'Arena']:
                 self.qsize = 5
-                main_location=2
+                main_location = 2
                 areas = ['Home', 'Shop', 'Guild', 'Arena', 'Campaign']
                 while True:
                     print_speed(f'Your Current location is {self.p_location}')
@@ -148,13 +150,13 @@ class Questions:
                     user_input = input("Input: ")
                     if self.checking_answer(user_input):
                         if int(user_input) == 5:
-                            main_location=1
-                            main_place=True
-                            self.p_location='Campaign'
+                            main_location = 1
+                            main_place = True
+                            self.p_location = 'Campaign'
                             break
                         if areas[int(user_input) - 1] == self.p_location:
                             print_speed(f'Sorry you cannot choose {areas[int(user_input) - 1]} cause you are currently at that location')
                         else:
-                            main_place=False
+                            main_place = False
                             break
         return int(user_input), main_location
