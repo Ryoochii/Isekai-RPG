@@ -216,15 +216,17 @@ class Players:
         elif 20 < self.lvl < 31:
             guild_id = "D"
         elif 30 < self.lvl < 41:
-            guild_id = "E"
+            guild_id = "C"
         elif 40 < self.lvl < 51:
-            guild_id = "D"
+            guild_id = "B"
         elif 50 < self.lvl < 61:
-            guild_id = "E"
+            guild_id = "A"
         elif 60 < self.lvl < 71:
-            guild_id = "D"
-        elif 70 < self.lvl:
+            guild_id = "S"
+        elif 70 < self.lvl < 81:
             guild_id = "SS"
+        elif 80 < self.lvl:
+            guild_id = "SSS"
         return guild_id
 
 
