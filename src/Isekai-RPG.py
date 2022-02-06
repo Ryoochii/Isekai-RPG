@@ -169,7 +169,7 @@ def game(continu=0) -> None:
                     print_speed("A=LVL51 to LVL60")
                     print_speed("S=LVL61 to LVL70")
                     print_speed("SS=LVL71 to LVL 80")
-                    print_speed("SSS=LVL81 to LVL MAX")
+                    print_speed("SSS=LVL 81 to LVL MAX")
                     print_speed("The higher your rank, the more missions you can access."
                                 "Lets assess your rank")
                     guild_id = player1.rank()

@@ -223,7 +223,7 @@ class Players:
             guild_id = "A"
         elif 60 < self.lvl < 71:
             guild_id = "S"
-        elif 70 < self.lvl < 81:
+        elif 70 < self.lvl < 80:
             guild_id = "SS"
         elif 80 < self.lvl:
             guild_id = "SSS"

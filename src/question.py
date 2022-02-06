@@ -5,7 +5,7 @@ from player import Players
 
 player1 = Players()
 num_format = re.compile(r'^-?[0-9][0-9]*$')
-
+difficulty=1
 
 def print_speed(input_str):
     for letter in input_str:
@@ -78,8 +78,9 @@ class Questions:
             print("(4) Insane")
             user_input = input('Input: ')
             if self.checking_answer(user_input):
+                difficulty=int(user_input)
                 break
-        return int(user_input)
+        return int(user_input), difficulty
 
     def text_speed(self) -> int:
         self.qsize = 4
